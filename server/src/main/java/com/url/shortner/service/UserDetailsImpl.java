@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {/**
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private String userName;
+	private String username;
 	private String email;
 	
 	private String password;
@@ -32,7 +32,7 @@ public class UserDetailsImpl implements UserDetails {/**
 		GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
 		return new UserDetailsImpl(
 				user.getId(),
-				user.getUserName(),
+				user.getUsername(),
 				user.getEmail(),
 				user.getPassword(),
 				Collections.singletonList(authority)
@@ -56,7 +56,7 @@ public class UserDetailsImpl implements UserDetails {/**
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return userName;
+		return username;
 	}
 
 
@@ -64,7 +64,7 @@ public class UserDetailsImpl implements UserDetails {/**
 			Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
-		this.userName = userName;
+		this.username = userName;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
