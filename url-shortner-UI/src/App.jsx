@@ -8,7 +8,8 @@ function App() {
 
   return (
     <Router>
-      <CurrentApp />
+      {/* {"hello"} */}
+      {/* <CurrentApp /> */}
     </Router>
   )
 }
