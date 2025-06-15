@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "custom-gradient": "linear-gradient(to right, #3b82f6, #9333ea)", // equivalent to from-blue-500 to-purple-600
+        "custom-gradient": "linear-gradient(to right, #04AA6D, #1d2a35)", // equivalent to from-blue-500 to-purple-600
         "custom-gradient-2": "linear-gradient(to left, #3b82f6, #f43f5e)",
         "card-gradient": "linear-gradient(to right, #38b2ac, #4299e1)",
       },
       colors: {
         navbarColor: "#ffffff",
-        btnColor: "#3364F7",
+        btnColor: "#04AA6D",
         linkColor: "#2a5bd7",
       },
       boxShadow: {
