@@ -1,9 +1,9 @@
 # MiniLinx
 This project is a URL shortener service, similar to [bit.ly](https://bitly.com/)
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
+**Link to project:**
 
-![alt tag](http://placecorgi.com/1200/650)
+
 
 ## How It's Made:
 
