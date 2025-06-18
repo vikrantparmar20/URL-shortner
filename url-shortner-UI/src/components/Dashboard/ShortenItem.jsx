@@ -10,8 +10,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useStoreContext } from '../../contextApi/ContextApi';
 import { Hourglass } from 'react-loader-spinner';
 import Graph from './Graph';
+import { BiTrash } from 'react-icons/bi';
 
-const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
+const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate, setDeleteUrl }) => {
     const { token } = useStoreContext();
     const navigate = useNavigate();
     const [isCopied, setIsCopied] = useState(false);
@@ -30,6 +31,29 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
             setSelectedUrl(shortUrl);
         }
         setAnalyticToggle(!analyticToggle);
+    }
+
+    const deleteUrl = async (shortUrl) =>{
+      console.log(shortUrl);
+      setLoader(true);
+      try{
+        await api.delete(`/api/urls/deleteUrl/${shortUrl}`,{
+          headers: {
+                          "Content-Type": "application/json",
+                          Accept: "application/json",
+                          Authorization: "Bearer " + token,
+                        },
+        }).then((res)=>{
+          if(res.status === 200){
+            setDeleteUrl(shortUrl);
+          }
+        })
+      }catch(err){
+        navigate("/error");
+        console.log(err);
+      }finally {
+            setLoader(false);
+        }
     }
 
     const fetchMyShortUrl = async () => {
@@ -109,8 +133,8 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
             </div>
         </div>
 
-        <div className="flex  flex-1  sm:justify-end items-center gap-4">
-            <CopyToClipboard
+        <div className="flex  flex-1  sm:justify-center lg:justify-end items-center gap-1">
+             <CopyToClipboard
                 onCopy={() => setIsCopied(true)}
                 text={`${import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${shortUrl}`}`}
             >
@@ -126,10 +150,18 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
 
             <div
                 onClick={() => analyticsHandler(shortUrl)}
-                className="flex cursor-pointer gap-1 items-center bg-rose-700 py-2 font-semibold shadow-md shadow-slate-500 px-6 rounded-md text-white "
+                className="flex cursor-pointer gap-1 items-center bg-btnColor py-2 font-semibold shadow-md shadow-slate-500 px-6 rounded-md text-white "
             >
                 <button>Analytics</button>
                 <MdAnalytics className="text-md" />
+          </div>
+          <div>
+          <div
+                onClick={() => deleteUrl(shortUrl)}
+                className="flex cursor-pointer gap-1 items-center bg-rose-700 py-2 font-semibold shadow-md shadow-slate-500 px-6 rounded-md text-white"
+            >
+                <BiTrash className="text-md" fontSize={"1.4em"} />
+          </div>
           </div>
           </div>
         </div>

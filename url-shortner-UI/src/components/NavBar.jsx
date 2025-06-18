@@ -63,6 +63,13 @@ const Navbar = () => {
           </li>
           )}
           {!token && (
+            <button
+             onClick={onLogOutHandler}
+             className="sm:ml-0 -ml-1 bg-btnColor text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300   transition-all duration-150">
+              Login
+            </button>
+            )}
+          {!token && (
             <Link to="/register">
               <li className=" sm:ml-0 -ml-1 bg-rose-700 text-white  cursor-pointer w-24 text-center font-semibold px-2 py-2 rounded-md  hover:text-slate-300   transition-all duration-150">
                 SignUp

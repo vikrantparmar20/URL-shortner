@@ -9,6 +9,7 @@ import com.url.shortner.repository.ClickEventRepository;
 import com.url.shortner.repository.UrlMappingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -103,5 +104,12 @@ public class UrlMappingService {
         }
 
         return urlMapping;
+    }
+    @Transactional
+    public UrlMappingDTO deleteUrl(String shortUrl) {
+    	System.out.println(shortUrl);
+    	UrlMapping urlMapping = urlMappingRepository.findByShortUrl(shortUrl);
+    	int m = urlMappingRepository.deleteByShortUrl(shortUrl);
+    	return convertToDto(urlMapping);
     }
 }

@@ -2,6 +2,7 @@ package com.url.shortner.controller;
 
 import com.url.shortner.dtos.ClickEventDTO;
 import com.url.shortner.dtos.UrlMappingDTO;
+import com.url.shortner.models.UrlMapping;
 import com.url.shortner.models.User;
 import com.url.shortner.service.UrlMappingService;
 import com.url.shortner.service.UserService;
@@ -71,5 +72,12 @@ public class UrlMappingController {
         LocalDate end = LocalDate.parse(endDate, formatter);
         Map<LocalDate, Long> totalClicks = urlMappingService.getTotalClicksByUserAndDate(user, start, end);
         return ResponseEntity.ok(totalClicks);
+    }
+    
+    @DeleteMapping("/deleteUrl/{shortUrl}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<UrlMappingDTO> deleteUrl(@PathVariable String shortUrl){
+    	UrlMappingDTO urlMappingDTO  = urlMappingService.deleteUrl(shortUrl);
+    	return ResponseEntity.ok(urlMappingDTO);
     }
 }
