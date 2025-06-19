@@ -34,7 +34,6 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate, setDelete
     }
 
     const deleteUrl = async (shortUrl) =>{
-      console.log(shortUrl);
       setLoader(true);
       try{
         await api.delete(`/api/urls/deleteUrl/${shortUrl}`,{
