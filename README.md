@@ -2,6 +2,8 @@
 This project is a URL shortener service, similar to [bit.ly](https://bitly.com/)
 
 **Link to project:** https://minilinx.netlify.app/
+
+
 **Hosted using:** Netlify, Neon and Render
 
 
